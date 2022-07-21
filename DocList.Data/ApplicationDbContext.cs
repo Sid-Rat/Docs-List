@@ -9,5 +9,11 @@ namespace DocList.Data
             : base(options)
         {
         }
+
+        public DbSet<JobType> JobTypes { get; set; }
+        public DbSet<Customer> Customers { get; set; }
+        public DbSet<Rating> Ratings { get; set; }
+
+
     }
 }

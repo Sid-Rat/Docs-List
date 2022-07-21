@@ -15,4 +15,14 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.7" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Data\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DocList.Data\DocList.Data.csproj" />
+    <ProjectReference Include="..\DocList.Models\DocList.Models.csproj" />
+    <ProjectReference Include="..\DocList.Services\DocList.Services.csproj" />
+  </ItemGroup>
+
 </Project>
