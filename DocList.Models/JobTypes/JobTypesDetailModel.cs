@@ -1,6 +1,6 @@
-﻿namespace DocList.MVC.Models
+﻿namespace DocList.Models.JobTypes
 {
-    public class JobTypesCreateModel
+    public class JobTypesDetailModel
     {
         public string Name { get; set; }
         public DateTime Deadline { get; set; }

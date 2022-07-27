@@ -1,9 +1,8 @@
-﻿using System;
-
-namespace DocList.MVC.Models
+﻿namespace DocList.Models.JobTypes
 {
-    public class JobTypeDetailModel
+    public class JobTypesIndexModel
     {
+        public int Id { get; set; }
         public string Name { get; set; }
         public DateTime Deadline { get; set; }
         public string Description { get; set; }

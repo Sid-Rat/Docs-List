@@ -1,6 +1,6 @@
-﻿namespace DocList.MVC.Models
+﻿namespace DocList.Models.JobTypes
 {
-    public class JobTypesIndexModel
+    public class JobTypesEditModel
     {
         public int Id { get; set; }
         public string Name { get; set; }

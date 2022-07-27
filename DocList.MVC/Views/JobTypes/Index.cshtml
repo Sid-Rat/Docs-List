@@ -1,0 +1,29 @@
+﻿@model IEnumerable<DocList.Models.JobTypes.JobTypesIndexModel>
+
+    <h1 class="text-center">Jobs</h1>
+        <a href="JobTypes/create" class="text-primary">Create a Job</a>
+
+        <table class="table table-striped table-dark">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Deadline</th>
+                    <th>Discription</th>
+                    <th>&nbsp;</th>
+                </tr>
+            </thead>
+            <tbody>
+               @foreach (var JobTypes in Model)
+        {
+            <tr>
+            <td>@JobTypes.Id</td>
+            <td>@JobTypes.Name</td>
+            <td>@JobTypes.Deadline</td>
+            <td>@JobTypes.Description</td>
+            <td>@**@</td>
+            </tr>
+        }
+        </tbody>
+        </table>
+  
