@@ -23,7 +23,36 @@ namespace DocList.MVC.Controllers
                 Deadline = jobTypes.Deadline,
                 Description = jobTypes.Description,
             });
-            return View();
+            return View(JobType);
+            public IActionResult Create()
+            {
+                return View();
+            }
+
+            [HttpPost]
+            [ValidateAntiForgeryToken]
+            public IActionResult Create(JobTypesCreateModel model)
+            {
+                if (!ModelState.IsValid)
+                {
+                    TempData["ErrorMsg"] = "Model State is Invalid";
+                    return View(model);
+                }
+                -ctx.JobType.Add(new JobType
+                {
+                    Name = model.Name,
+                    Deadline = model.Deadline,
+                    Description = model.Description,
+                });
+                if (_ctx.SaveChanges() == 1)
+                {
+                    return Redirect("/JobTypes");
+                }
+                TempData["ErrorMsg"] = "Unable to save to the database. Please try again later.";
+                return View(model);
+            }
+
         }
     }
 }
+

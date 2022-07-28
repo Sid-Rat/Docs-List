@@ -1,0 +1,26 @@
+﻿@model IEnumerable<DocList.Models.JobTypes.JobTypesCreateModel>
+
+    <div class="container">
+        <form method="post" asp-action="Create">
+            <div class="form-group">
+                <label for="Name">Name</label>
+                <input type="Name" class="form-control" name="Name" placeholder="Landscaping, Remodeling, or Mechanical"/>
+            </div>
+           <div class="form-group">
+                <label for="Description">Description</label>
+                <input type="text" class="form-controll" name="Description" placeholder="Describe Job. What you need done"/>
+            </div>
+           <div class="form-group">
+                <label for="Deadline">Deadline</label>
+                <input type="text" class="form-controll" name="Deadline" placeholder="When does the job need done"/>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block mt=2">Createt</button>
+
+
+        </form>
+    </div>
+
+
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+
