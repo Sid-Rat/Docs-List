@@ -1,4 +1,4 @@
-﻿namespace DocList.Models.JobTypes
+﻿                                                                                                                    namespace DocList.Models.JobTypes
 {
     public class JobTypesIndexModel
     {
