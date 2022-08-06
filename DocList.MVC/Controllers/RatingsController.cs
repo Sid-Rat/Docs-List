@@ -29,7 +29,7 @@ namespace DocList.Controllers
         }
 
         // GET: RatingsController/Create
-        public IActionResult Create()
+        public IActionResult RatingCreate()
         {
             return View();
         }
@@ -37,7 +37,7 @@ namespace DocList.Controllers
         // POST: RatingsController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(RatingsCreate model)
+        public IActionResult RatingCreate(RatingsCreate model)
         { 
             if (!ModelState.IsValid)
                 return View(model);
