@@ -1,58 +1,98 @@
-﻿//using DocList.MVC.Data;
-//using DocListDbContext;
-using DocList.Data;
-using DocList.Models.JobTypes;
+﻿using DocList.Models.JobTypes;
+using DocList.Services;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace DocList.MVC.Controllers
+namespace DocList.Controllers
 {
     public class JobTypesController : Controller
     {
-        private readonly ApplicationDbContext _ctx;
-        public JobTypesController(ApplicationDbContext ctx)
+        private readonly IJobTypeService _jobTypeService;
+        public JobTypesController(IJobTypeService jtService)
         {
-            _ctx = ctx;
+            _jobTypeService = jtService;
         }
 
-        public IActionResult Index()
+        public IActionResult Index()    
+        { 
+            var jobTypes = _jobTypeService.GetJobTypes();
+            return View(jobTypes);
+        }
+         
+        public IActionResult Details()
         {
-            var jobTypes = _ctx.JobTypes.Select(jobTypes => new JobTypesIndexModel
+            var jobTypes = _jobTypeService.DetailJobJypes();
+            return View(jobTypes);
+        }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Create(JobTypesCreateModel model)
+        {
+            if (!ModelState.IsValid)
+                return View(model);
+
+            if (_jobTypeService.CreateJobTypes(model))
+                return RedirectToAction("Index");
+
+            return View(model); 
+        }
+        public IActionResult Edit(int Id)
+        {
+            var jobs = _jobTypeService.GetJobTypeById(Id);
+            if (jobs == null)
             {
-                Id = jobTypes.Id,
-                Name = jobTypes.Name,
-                Deadline = jobTypes.Deadline,
-                Description = jobTypes.Description,
-            });
-            return View(JobType);
-            public IActionResult Create()
+                return NotFound();
+            }
+            var model = new JobTypesEditModel
+            {
+                Id = jobs.Id,
+                Name = jobs.Name,
+                Deadline = jobs.Deadline,
+                Description = jobs.Description,
+
+            };
+            return View(model);
+
+
+          
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(JobTypesEditModel model)
+        {
+            if (!ModelState.IsValid)
+                return View(model);
+
+            if (_jobTypeService.EditJobTypes(model))
+                return RedirectToAction("Index");
+
+            return View(model);
+        }
+
+        public IActionResult Delete(int id)
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Delete(int id, IFormCollection collection)
+        {
+            try
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            catch
             {
                 return View();
             }
-
-            [HttpPost]
-            [ValidateAntiForgeryToken]
-            public IActionResult Create(JobTypesCreateModel model)
-            {
-                if (!ModelState.IsValid)
-                {
-                    TempData["ErrorMsg"] = "Model State is Invalid";
-                    return View(model);
-                }
-                -ctx.JobType.Add(new JobType
-                {
-                    Name = model.Name,
-                    Deadline = model.Deadline,
-                    Description = model.Description,
-                });
-                if (_ctx.SaveChanges() == 1)
-                {
-                    return Redirect("/JobTypes");
-                }
-                TempData["ErrorMsg"] = "Unable to save to the database. Please try again later.";
-                return View(model);
-            }
-
         }
     }
 }
-
