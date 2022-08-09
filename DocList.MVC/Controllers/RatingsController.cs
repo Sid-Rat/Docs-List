@@ -1,4 +1,5 @@
 ﻿using DocList.Models.Ratings;
+using DocList.Ratings;
 using DocList.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,14 +16,14 @@ namespace DocList.Controllers
         }
 
         // GET: RatingsController
-        public IActionResult Index()
+        public IActionResult RatingIndex()
         {
             var getRating = _ratings.GetRatings();
             return View(getRating);
         }
 
         // GET: RatingsController/Details/5
-        public IActionResult Details()
+        public IActionResult RatingDetails()
         {
             var getRating = (_ratings.GetRatings());
             return View();
@@ -49,7 +50,7 @@ namespace DocList.Controllers
         }
 
         // GET: RatingsController/Edit/5
-        public IActionResult Edit(int id)
+        public IActionResult RatingEdit(int id)
         {
             return View();
         }
@@ -57,11 +58,11 @@ namespace DocList.Controllers
         // POST: RatingsController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int id, IFormCollection collection)
+        public IActionResult RatingEdit(RatingsIndex model)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(RatingIndex));
             }
             catch
             {
@@ -82,7 +83,7 @@ namespace DocList.Controllers
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(RatingIndex));
             }
             catch
             {

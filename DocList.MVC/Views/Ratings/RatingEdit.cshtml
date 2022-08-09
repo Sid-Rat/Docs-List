@@ -1,0 +1,49 @@
+﻿@model DocList.Ratings.RatingsIndex
+
+@{
+    ViewData["Title"] = "RatingEdit";
+}
+
+<h1>RatingEdit</h1>
+
+<h4>RatingsIndex</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="RatingEdit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="RatingsId" class="control-label"></label>
+                <input asp-for="RatingsId" class="form-control" />
+                <span asp-validation-for="RatingsId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RatingsName" class="control-label"></label>
+                <input asp-for="RatingsName" class="form-control" />
+                <span asp-validation-for="RatingsName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Score" class="control-label"></label>
+                <input asp-for="Score" class="form-control" />
+                <span asp-validation-for="Score" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RatingsTotal" class="control-label"></label>
+                <input asp-for="RatingsTotal" class="form-control" />
+                <span asp-validation-for="RatingsTotal" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+        
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

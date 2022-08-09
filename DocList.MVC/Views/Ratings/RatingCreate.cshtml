@@ -4,16 +4,16 @@
     ViewData["Title"] = "RatingCreate";
 }
 
-<h1>RatingCreate</h1>
+<h1>Please rate my service</h1>
 
-<h4>Rating</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="RatingCreate">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <p>Enter Job ID. Can be found here: <a asp-controller="JobTypes" asp-action="Index">Jobs list</a></p>
             <div class="form-group">
-                <label asp-for="RatingsId" class="control-label"></label>
+                <label asp-for="RatingsId" class="control-label">Job Id</label>
                 <input asp-for="RatingsId" class="form-control" />
                 <span asp-validation-for="RatingsId" class="text-danger"></span>
             </div>
@@ -30,7 +30,8 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+   <button><a asp-controller="Ratings" asp-action="RatingEdit">Edit existing rating</a></button><br />
+   <button><a asp-controller="Ratings" asp-action="RatingDetails">Back to list</a></button>
 </div>
 
 @section Scripts {
