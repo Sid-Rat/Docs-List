@@ -11,7 +11,6 @@
     <div class="col-md-4">
         <form asp-action="RatingCreate">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <p>Enter Job ID. Can be found here: <a asp-controller="JobTypes" asp-action="Index">Jobs list</a></p>
             <div class="form-group">
                 <label asp-for="RatingsId" class="control-label">Job Id</label>
                 <select asp-for="RatingsId" class="form-control" asp-items="ViewBag.RatingsId"></select>
