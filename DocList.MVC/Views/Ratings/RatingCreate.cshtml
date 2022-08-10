@@ -14,7 +14,7 @@
             <p>Enter Job ID. Can be found here: <a asp-controller="JobTypes" asp-action="Index">Jobs list</a></p>
             <div class="form-group">
                 <label asp-for="RatingsId" class="control-label">Job Id</label>
-                <input asp-for="RatingsId" class="form-control" />
+                <select asp-for="RatingsId" class="form-control" asp-items="ViewBag.RatingsId"></select>
                 <span asp-validation-for="RatingsId" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -23,7 +23,7 @@
                 <span asp-validation-for="Score" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
     </div>

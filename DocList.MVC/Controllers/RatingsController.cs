@@ -2,6 +2,7 @@
 using DocList.Ratings;
 using DocList.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace DocList.Controllers
 {
@@ -16,11 +17,12 @@ namespace DocList.Controllers
         }
 
         // GET: RatingsController
-        public IActionResult RatingIndex()
-        {
-            var getRating = _ratings.GetRatings();
-            return View(getRating);
-        }
+            public IActionResult RatingIndex()
+            {
+                var getRating = _ratings.GetRatings();
+                return View(getRating);
+            }
+        
 
         // GET: RatingsController/Details/5
         public IActionResult RatingDetails()
@@ -32,6 +34,7 @@ namespace DocList.Controllers
         // GET: RatingsController/Create
         public IActionResult RatingCreate()
         {
+            ViewData["RatingsId"] = new SelectList(_ratings.JobTypes(), "Id", "Name");
             return View();
         }
 
@@ -44,7 +47,7 @@ namespace DocList.Controllers
                 return View(model);
 
             if (_ratings.Rating(model))
-                return RedirectToAction("Index");
+                return RedirectToAction("RatingIndex");
 
             return View(model);
         }
